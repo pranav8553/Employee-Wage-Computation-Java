@@ -9,11 +9,9 @@ public class EmployeeWage{
 		int randomCheck=(int)Math.floor(Math.random()*10)%2;
 		//Computation
 		if (randomCheck == IS_FULL_TIME){
-			System.out.println("Employee is Present");
 			empHours=8;
 		}
 		else{
-			System.out.println("Employee is Absent");
 			empHours=0;
 		}
 		employeeWage=empHours * EMP_RATE_PER_HOUR;
