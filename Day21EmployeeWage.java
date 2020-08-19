@@ -1,11 +1,10 @@
-public class EmployeeWage{
+public class Day21EmployeeWage{
 	//Constants
 	public static final int IS_FULL_TIME=2;
 	public static final int IS_PART_TIME=1;
 	public static final int EMP_RATE_PER_HOUR=20;
 	public static final int WORKING_DAYS_PER_MONTH=20;
 	public static final int MAXIMUM_WORKING_HOURS=100;
-
 
 	public static void calculateEmpWage() {
 	 //Variables
