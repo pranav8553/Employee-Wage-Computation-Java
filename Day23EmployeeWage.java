@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 interface IComputeEmpWage {
 	public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth);
 	public void computeEmpWage();
@@ -30,22 +32,23 @@ public class Day23EmployeeWage implements IComputeEmpWage {
 	// Constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
-	private int numOfCompanies = 0;
-	public CompanyEmpWage[] companyEmpWageArray;
+	private ArrayList<CompanyEmpWage> companyEmpWagesList;
 
 	public Day23EmployeeWage() {
-		companyEmpWageArray = new CompanyEmpWage[4];
+		companyEmpWagesList = new ArrayList<>();
 	}
 
-		public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth) {
-		companyEmpWageArray[numOfCompanies] = new CompanyEmpWage(company, numOfWorkingDays, empRatePerHour, maxHoursPerMonth);
-		numOfCompanies++;
+	public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth) {
+		CompanyEmpWage companyEmpWage = new CompanyEmpWage(company, numOfWorkingDays, empRatePerHour, maxHoursPerMonth);
+		companyEmpWagesList.add(companyEmpWage);
 	}
 
 	public void computeEmpWage() {
-		for (int i = 0; i < numOfCompanies; i++) {
-			companyEmpWageArray[i].setTotalEmpWage(calculateEmpWage(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
+		for (int i = 0; i < companyEmpWagesList.size(); i++) {
+			CompanyEmpWage companyEmpWage = companyEmpWagesList.get(i);
+			int totalEmpWage = calculateEmpWage(companyEmpWage);
+			companyEmpWage.setTotalEmpWage(totalEmpWage);
+			System.out.println(companyEmpWage);
 		}
 	}
 
@@ -80,7 +83,7 @@ public class Day23EmployeeWage implements IComputeEmpWage {
 		Day23EmployeeWage empWageBuilder = new Day23EmployeeWage();
 		empWageBuilder.addCompanyEmpWage("DMart", 20, 20, 100);
 		empWageBuilder.addCompanyEmpWage("Jio", 25, 30, 80);
+		empWageBuilder.addCompanyEmpWage("Vodafone", 20, 28, 120);
 		empWageBuilder.computeEmpWage();
 	}
 }
-
