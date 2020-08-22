@@ -1,3 +1,8 @@
+interface IComputeEmpWage {
+	public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth);
+	public void computeEmpWage();
+}
+
 class CompanyEmpWage {
 	public final String company;
 	public int numOfWorkingDays;
@@ -21,7 +26,7 @@ class CompanyEmpWage {
 	}
 }
 
-public class Day23EmployeeWage {
+public class Day23EmployeeWage implements IComputeEmpWage {
 	// Constants
 	public static final int IS_FULL_TIME = 2;
 	public static final int IS_PART_TIME = 1;
@@ -32,9 +37,16 @@ public class Day23EmployeeWage {
 		companyEmpWageArray = new CompanyEmpWage[4];
 	}
 
-	public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth) {
+		public void addCompanyEmpWage(String company, int numOfWorkingDays, int empRatePerHour, int maxHoursPerMonth) {
 		companyEmpWageArray[numOfCompanies] = new CompanyEmpWage(company, numOfWorkingDays, empRatePerHour, maxHoursPerMonth);
 		numOfCompanies++;
+	}
+
+	public void computeEmpWage() {
+		for (int i = 0; i < numOfCompanies; i++) {
+			companyEmpWageArray[i].setTotalEmpWage(calculateEmpWage(companyEmpWageArray[i]));
+			System.out.println(companyEmpWageArray[i]);
+		}
 	}
 
 	public int calculateEmpWage(CompanyEmpWage companyEmpWage) {
@@ -62,13 +74,6 @@ public class Day23EmployeeWage {
 		}
 		totalEmployeeWage = totalEmpHours * companyEmpWage.empRatePerHour;
 		return totalEmployeeWage;
-	}
-
-	public void computeEmpWage() {
-		for (int i = 0; i < numOfCompanies; i++) {
-			companyEmpWageArray[i].setTotalEmpWage(calculateEmpWage(companyEmpWageArray[i]));
-			System.out.println(companyEmpWageArray[i]);
-		}
 	}
 
 	public static void main(String[] args) {
