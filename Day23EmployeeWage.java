@@ -93,5 +93,7 @@ public class Day23EmployeeWage implements IComputeEmpWage {
 		empWageBuilder.addCompanyEmpWage("Jio", 25, 30, 80);
 		empWageBuilder.addCompanyEmpWage("Vodafone", 20, 28, 120);
 		empWageBuilder.computeEmpWage();
+		System.out.println("Queried for Total Employee wage for DMart: " + empWageBuilder.getTotalEmpWage("DMart"));
+
 	}
 }
